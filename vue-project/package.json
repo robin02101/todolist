@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "homepage": "https://robin02101.github.io/todolist/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -26,4 +27,5 @@
     "vite": "^5.0.11",
     "vitest": "^1.2.2"
   }
+  
 }
