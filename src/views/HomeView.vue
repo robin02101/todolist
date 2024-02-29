@@ -130,7 +130,7 @@ export default {
       <button class="not-todo rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="notTodo" :class="{'bg-blue-600':rule === '3'}" @click="addBtn3(false)">未執行</button>
     </div>
   </div>
-{{ arr }}
+
     <table class="todo mt-8">
       <thead>
         <tr>
