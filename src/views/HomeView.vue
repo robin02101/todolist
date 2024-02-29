@@ -1,4 +1,6 @@
 <script setup>
+import { onMounted } from 'vue';
+
 
 </script>
 
@@ -10,8 +12,16 @@ export default {
       checkValue :'',
       arr:[],
       rule:'1',
+     
     };
+    
+
   },
+  mounted(){
+      if(localStorage.getItem('arr')){
+      this.arr = JSON.parse(localStorage.getItem('arr'));
+    }
+    },
   computed:{
     filterCheck() {
       if (this.rule === '1') {
@@ -25,6 +35,7 @@ export default {
         return this.arr.filter(e => e.check === false);
       }
     },
+    
   },
   
   methods: {
@@ -55,12 +66,13 @@ export default {
       }
       this.arr.push(addText); 
     } 
-      
-
+    localStorage.setItem('arr', JSON.stringify(this.arr));
+    
   },
   remove(index) {
      
      this.arr.splice(index, 1);
+     localStorage.setItem('arr', JSON.stringify(this.arr));
    },
    checkBtn(e){
       this.checkValue = e;
@@ -101,12 +113,14 @@ export default {
     //     console.log(item);
 
     // }) ;
+    localStorage.setItem('arr', JSON.stringify(this.arr));
         },
     checkTodo(e){
       // this.arr.map((item)=> {
       //     item.check = !item.check;
       // });
       e.check = !e.check;
+      localStorage.setItem('arr', JSON.stringify(this.arr));
     },
   },
 };
