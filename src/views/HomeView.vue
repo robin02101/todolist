@@ -48,8 +48,9 @@ export default {
         alert('請輸入事項');
         return;
     }
+    const id =  this.arr.length>0 ? this.arr[this.arr.length - 1].id : 0;
     if(this.arr.length == 0 ){
-      const id = 1;
+      
       const addText = {
           id : id ,
           check: false,
@@ -57,7 +58,7 @@ export default {
       }
       this.arr.push(addText);
     }else
-    {const id = this.arr[this.arr.length - 1].id;
+    {
       const addText = {
           id : id + 1,
           check: false,
@@ -155,7 +156,7 @@ export default {
           <th class="px-20">功能</th>
         </tr>
       </thead>
-      <tbody class="data-show " v-for="(e,index) in  filterCheck" :key="index">
+      <tbody class="data-show " v-for="(e,index) in  filterCheck" :key="e.id">
             <tr >
               <td><input type="checkbox" class="pl-20 ml-24" :checked="e.check" @click="checkTodo(e)"></td>
               <td class="px-20">{{ e.text }}</td>
