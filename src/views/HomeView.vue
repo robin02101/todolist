@@ -10,8 +10,6 @@ export default {
       checkValue :'',
       arr:[],
       rule:'1',
-        
-      
     };
   },
   computed:{
@@ -35,7 +33,10 @@ export default {
      
     },
   addTodo(){
-    
+    if (this.textValue === '') {
+        alert('請輸入事項');
+        return;
+    }
     if(this.arr.length == 0 ){
       const id = 1;
       const addText = {
@@ -44,8 +45,7 @@ export default {
           text: this.textValue,
       }
       this.arr.push(addText);
-    }
-    else
+    }else
     {const id = this.arr[this.arr.length - 1].id;
       const addText = {
           id : id + 1,
