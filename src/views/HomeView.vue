@@ -75,13 +75,14 @@ export default {
     add3(){
       this.rule = '3';
     },
-    addBtn1(e){
+    addBtn1(){
       this.checkBtn();
       this.add1();
     },
     addBtn2(e){
       this.checkBtn(e);
       this.add2();
+      
     },
     addBtn3(e){
       this.checkBtn(e);
@@ -89,17 +90,18 @@ export default {
     },
     mapText(e){
       const content =  prompt('修改文字');
-     
+     if(content == ''){
+      alert('輸入内容不能爲空');
+      return;
+     } 
+     e.text = content;
     //   this.arr.map((item)=> {
       
     //   item.text = content;
     //     console.log(item);
 
     // }) ;
-        e.text = content;
-   
-        
-    },
+        },
     checkTodo(e){
       // this.arr.map((item)=> {
       //     item.check = !item.check;
@@ -125,9 +127,9 @@ export default {
       <button class="add-Todo ml-4 rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" @click="addTodo()">新增</button>
     </div>
     <div class="search-btn mt-8">
-      <button class="all rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="all" :class="{'bg-blue-600':rule === '1'}" @click="addBtn1('')">全部</button>
-      <button class="is-todo rounded bg-slate-300 ml-4 mr-4 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="isTodo" :class="{'bg-blue-600':rule === '2'}" @click="addBtn2(true)">已執行</button>
-      <button class="not-todo rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="notTodo" :class="{'bg-blue-600':rule === '3'}" @click="addBtn3(false)">未執行</button>
+      <button class="all rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="all" :class="{'active':rule === '1'}" @click="addBtn1()">全部</button>
+      <button class="is-todo rounded bg-slate-300 ml-4 mr-4 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="isTodo" :class="{'active':rule === '2'}" @click="addBtn2()">已執行</button>
+      <button class="not-todo rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="notTodo" :class="{'active':rule === '3'}" @click="addBtn3()">未執行</button>
     </div>
   </div>
 
@@ -139,14 +141,14 @@ export default {
           <th class="px-20">功能</th>
         </tr>
       </thead>
-      <tbody class="data-show" v-for="(e, index) in  filterCheck" :key="index">
+      <tbody class="data-show " v-for="(e,index) in  filterCheck" :key="index">
             <tr >
-              <td><input type="checkbox" class="pl-20" @click="checkTodo(e)"></td>
+              <td><input type="checkbox" class="pl-20 ml-24" :checked="e.check" @click="checkTodo(e)"></td>
               <td class="px-20">{{ e.text }}</td>
             
-            <td class="pl-20">
-              <button type="button" @click="mapText(e)">編輯</button>
-              <button type="button" @click="remove(index)">刪除</button>
+            <td class="pl-20 ">
+              <button class="mr-4 bg-slate-300 border-indigo-500 border-2 rounded hover:bg-sky-500" type="button" @click="mapText(e)">編輯</button>
+              <button class="bg-slate-300 border-indigo-500 border-2 rounded hover:bg-sky-500" type="button" @click="remove(index)">刪除</button>
             </td>
           </tr>
           </tbody>
@@ -158,3 +160,9 @@ export default {
 
 
 </template>
+
+<style scoped>
+.active {
+  @apply bg-blue-700 text-black;
+}
+</style>
