@@ -9,18 +9,24 @@ export default {
       textValue :'',
       checkValue :'',
       arr:[],
-      rule:'0',
+      rule:'1',
         
       
     };
   },
   computed:{
-    filterCheck(){
-        if(!this.checkValue){
-          return this.arr;
-        }
-        return this.arr.filter(e => e.check === this.checkValue);
-      },
+    filterCheck() {
+      if (this.rule === '1') {
+        
+        return this.arr;
+      } else if (this.rule === '2') {
+        
+        return this.arr.filter(e => e.check === true);
+      } else if (this.rule === '3') {
+        
+        return this.arr.filter(e => e.check === false);
+      }
+    },
   },
   
   methods: {
