@@ -34,7 +34,7 @@ export default {
       const id = 1;
       const addText = {
           id : id ,
-          check: 'false',
+          check: false,
           text: this.textValue,
       }
       this.arr.push(addText);
@@ -43,7 +43,7 @@ export default {
     {const id = this.arr[this.arr.length - 1].id;
       const addText = {
           id : id + 1,
-          check: 'false',
+          check: false,
           text: this.textValue,
          
       }
@@ -58,6 +58,28 @@ export default {
    },
    checkBtn(e){
       this.checkValue = e;
+    },
+    
+    add1(){
+      this.rule = '1';
+    },
+    add2(){
+      this.rule = '2';
+    },
+    add3(){
+      this.rule = '3';
+    },
+    addBtn1(e){
+      this.checkBtn();
+      this.add1();
+    },
+    addBtn2(e){
+      this.checkBtn(e);
+      this.add2();
+    },
+    addBtn3(e){
+      this.checkBtn(e);
+      this.add3();
     },
     mapText(e){
       const content =  prompt('修改文字');
@@ -97,12 +119,12 @@ export default {
       <button class="add-Todo ml-4 rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" @click="addTodo()">新增</button>
     </div>
     <div class="search-btn mt-8">
-      <button class="all rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="all" @click="checkBtn('')">全部</button>
-      <button class="is-todo rounded bg-slate-300 ml-4 mr-4 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="isTodo" @click="checkBtn('true')">已執行</button>
-      <button class="not-todo rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="notTodo" @click="checkBtn('false')">未執行</button>
+      <button class="all rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="all" :class="{'bg-blue-600':rule === '1'}" @click="addBtn1('')">全部</button>
+      <button class="is-todo rounded bg-slate-300 ml-4 mr-4 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="isTodo" :class="{'bg-blue-600':rule === '2'}" @click="addBtn2(true)">已執行</button>
+      <button class="not-todo rounded bg-slate-300 border-indigo-500 border-2 hover:bg-sky-500" type="button" data-search="notTodo" :class="{'bg-blue-600':rule === '3'}" @click="addBtn3(false)">未執行</button>
     </div>
   </div>
-
+{{ arr }}
     <table class="todo mt-8">
       <thead>
         <tr>
